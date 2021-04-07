@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Candidate Portal</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+    <form class="form-horizontal" id="candidate-resume-form" enctype="multipart/form-data" method="POST">
+      <fieldset>
+      
+      <!-- Form Name -->
+      <legend>Candidate Portal</legend>
+      
+      <!-- File Button --> 
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="resume-upload">Upload Resume*</label>
+        <div class="col-md-4">
+          <input id="resume-upload" name="resume-upload" class="input-file" type="file" required="">
+        </div>
+      </div>
+
+      </fieldset>
+
+      {% csrf_token %}
+
+    </form>
+
+      <form class="form-horizontal" id="candidate-info-form" method="POST">
+        <hr/>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label"><p class="h3">Contact Information</p></label>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="first-name">First Name</label>  
+        <div class="col-md-4">
+        <input id="first-name" name="first-name" type="text" placeholder="" class="form-control input-md"
+          value="{{ first_name }}">
+          
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="middle-name">Middle Name</label>  
+        <div class="col-md-4">
+        <input id="middle-name" name="middle-name" type="text" placeholder="" class="form-control input-md" 
+          value="{{ middle_name }}">
+          
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="last-name">Last Name</label>  
+        <div class="col-md-4">
+        <input id="last-name" name="last-name" type="text" placeholder="" class="form-control input-md"
+          value="{{ last_name }}">          
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <!--div class="form-group">
+        <label class="col-md-4 control-label" for="dob">Date of Birth</label>  
+        <div class="col-md-4">
+        <input id="dob" name="dob" type="text" placeholder="" class="form-control input-md"
+          value="{{ date_of_birth }}">          
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Contact Email</label>  
+        <div class="col-md-4">
+        <input id="email" name="email" type="text" placeholder="" class="form-control input-md"
+          value="{{ email }}">          
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="phone">Mobile Number</label>  
+        <div class="col-md-4">
+        <input id="phone" name="phone" type="text" placeholder="" class="form-control input-md"
+          value="{{ mobile_number }}">          
+        </div>
+      </div>
+
+      <!-- Education -->
+
+      <hr/>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label"><p class="h3">Education</p></label>
+      </div>
+
+      <div id="education-section">
+
+        {% for degree in degrees %}
+          <div id="degree-container{{ forloop.counter }}">
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="degree_1">Organization {{ forloop.counter }} </label>  
+              <div class="col-md-4">
+              <input id="degree{{ forloop.counter }}" type="text" name="organization" class="form-control input-md"
+                value="{{ degree.organization }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="degree1">Degree {{ forloop.counter }} Type</label>  
+              <div class="col-md-4">
+              <input id="degree{{ forloop.counter }}" type="text" name="degree" class="form-control input-md"
+                value="{{ degree.degree_type }}">
+              </div>
+            </div>
+            
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="field{{ forloop.counter }}">Field of Study</label>  
+              <div class="col-md-4">
+              <input id="field{{ forloop.counter }}" name="field{{ forloop.counter }}" type="text" placeholder="" class="form-control input-md"
+                value="{{ degree.field_of_study }}">  
+              </div>
+            </div>
+            
+
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="remove-degree{{ forloop.counter }}"></label>
+              <div class="col-md-4">
+                <button id="remove-degree{{ forloop.counter }}" type="button" name="remove-degree{{ forloop.counter }}" class="btn btn-danger pull-right">-</button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="add-degree"></label>
+        <div class="col-md-4">
+          <button id="add-degree" type="button" name="add-degree" class="btn btn-success">+</button>
+        </div>
+      </div>
+
+<!-- Experience -->
+
+      <hr/>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label"><p class="h3">Experience</p></label>
+      </div>
+
+      <div id="experience-section">
+
+        {% for exp in experience %}
+          <div id="experience-container{{ forloop.counter }}">
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="organization{{ forloop.counter }}">Organization</label>  
+              <div class="col-md-4">
+              <input id="organization{{ forloop.counter }}" type="text" name="organization" class="form-control input-md"
+                value="{{ exp.organization }}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="designation{{ forloop.counter }}">Designation</label>  
+              <div class="col-md-4">
+              <input id="designation{{ forloop.counter }}" type="text" class="form-control input-md"
+                value="{{ exp.designation }}">
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="duration{{ forloop.counter }}">Duration (Months)</label>  
+              <div class="col-md-4">
+              <input id="duration{{ forloop.counter }}" type="text" class="form-control input-md"
+                value="{{ exp.duration }}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="remove-experience{{ forloop.counter }}"></label>
+              <div class="col-md-4">
+                <button id="remove-experience{{ forloop.counter }}" type="button" name="remove-experience{{ forloop.counter }}" class="btn btn-danger pull-right">-</button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div> 
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="add-experience"></label>
+        <div class="col-md-4">
+          <button id="add-experience" type="button" name="add-experience" class="btn btn-success">+</button>
+        </div>
+      </div>
+
+      <!-- Misc. -->
+
+      <hr/>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label"><p class="h3">Skills and Awards</p></label>
+      </div>
+      
+      <!-- Textarea -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="skills">Skills</label>
+        <div class="col-md-4">                     
+          <textarea class="form-control" id="skills" name="skills">{{ skills }}</textarea>
+        </div>
+      </div>
+      
+      <!-- Textarea -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="certifications">Certifications / Awards</label>
+        <div class="col-md-4">                     
+          <textarea class="form-control" id="certifications" name="certifications">{{ awards }}</textarea>
+        </div>
+      </div>
+      
+      <!-- Textarea -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="headline">Headline / Summary</label>
+        <div class="col-md-4">                     
+          <textarea class="form-control" id="headline" name="headline">{{ summary }}</textarea>
+        </div>
+      </div>
+      
+      <!-- Textarea -->
+      <!--div class="form-group">
+        <label class="col-md-4 control-label" for="cover-letter">Cover Letter</label>
+        <div class="col-md-4">                     
+          <textarea class="form-control" id="cover-letter" name="cover-letter"></textarea>
+        </div>
+      </div>
+      
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit-button"></label>
+        <div class="col-md-4">
+          <button id="submit-button" name="submit-button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+      
+      </fieldset>
+      {% if messages %}
+      {% for message in messages %}
+        <h3 style="color: chartreuse;">{{message}}</h3>
+      {% endfor %} 
+      {% endif %}
+
+      {% csrf_token %}
+
+      </form>
+
+      {% load static %}
+      <script src="{% static 'poc/candidate_portal.js' %}"></script> 
+      
+  </body>
+</html>

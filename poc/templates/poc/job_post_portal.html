@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Job Post Portal</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+      <form class="form-horizontal" id="job-post-form" method="POST">
+
+      <!-- Form Name -->
+      <legend>Job Post Portal</legend>
+
+      <!-- Textarea -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="job-description">Job Description</label>
+        <div class="col-md-4">                     
+          <textarea class="form-control" id="job-description" name="job-description"></textarea>
+        </div>
+      </div>
+      
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit-button"></label>
+        <div class="col-md-4">
+          <button id="find-candidate-button" name="find-candidate-button" class="btn btn-primary">Find Candidates</button>
+        </div>
+      </div>
+      
+      </fieldset>
+
+      <table border="1" width="600">
+        <tr>
+        <td>First Name</td>
+        <td>Middle Name</td>
+        <td>Last Name</td>
+        <td>Skills</td>
+        <td>Email</td>
+        <td>Match Percentage</td>
+        </tr>
+        
+        {% for candidate,match_percentage in result %}
+        <tr>
+        <td>{{ candidate.first_name }}</td>
+        <td>
+        {{ candidate.middle_name }}</td>
+        <td>{{candidate.last_name}}        </td>
+        <td>{{candidate.skills}}        </td>
+        <td>{{candidate.email}}        </td>
+        <td>{{match_percentage}}        </td>
+        </tr>
+        {% endfor %}
+       </table>  
+      {% csrf_token %}
+
+      </form>
+      
+  </body>
+</html>
