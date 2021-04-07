@@ -6,11 +6,11 @@ django-tables2==2.3.4
 djangorestframework==3.12.2
 docutils==0.16
 docx2txt==0.8
-flake8 @ file:///tmp/build/80754af9/flake8_1601911421857/work
+
 Flask==1.1.2
-fsspec @ file:///tmp/build/80754af9/fsspec_1602684995936/work
+
 future==0.18.2
-gevent @ file:///C:/ci/gevent_1601397627942/work
+
 glob2==0.7
-greenlet @ file:///C:/ci/greenlet_1600885448389/work
+
 gunicorn==20.1.0
