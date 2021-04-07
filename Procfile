@@ -1,1 +1,1 @@
-web: gunicorn neunet.wsgi --log-file -
+web: gunicorn neunet.wsgi 
