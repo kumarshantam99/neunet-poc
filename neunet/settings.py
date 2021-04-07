@@ -25,7 +25,7 @@ SECRET_KEY = 'k!d4kl*@&kmk318+-u!@&ze=w2ovj134=-vnfe^4sm02sb_h$z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['neunet-poc.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['neunet-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
